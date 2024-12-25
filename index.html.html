@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Günlük Sayaç</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .countdown {
+            font-size: 30px;
+            color: #333;
+            font-weight: bold;
+        }
+        .brochure-image {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>10 Günlük Sayaç</h1>
+    <p>""""""""""""""</p>
+    
+    <div class="countdown" id="timer"></div>
+
+    <img src="a.jpg" alt="Broşür Fotoğrafı" class="brochure-image">
+
+    <script>
+        const endDate = new Date();
+        endDate.setDate(endDate.getDate() + 10);
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeRemaining = endDate - now;
+
+            if (timeRemaining <= 0) {
+                document.getElementById("timer").innerHTML = "Süre doldu!";
+                clearInterval(countdownInterval);
+            } else {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerHTML = 
+                    `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        updateCountdown();
+    </script>
+</body>
+</html>
